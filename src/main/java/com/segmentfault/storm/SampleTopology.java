@@ -1,5 +1,5 @@
 /**
- * This topology used for watching SegmentFault's haproxy log.
+ * This topology is a sample example for reading message from kafka.
  */
 package com.segmentfault.storm;
 
