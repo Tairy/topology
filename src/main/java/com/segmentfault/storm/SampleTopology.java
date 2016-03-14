@@ -23,9 +23,9 @@ import backtype.storm.tuple.Tuple;
  */
 public class SampleTopology 
 {
-	/**
-	 * @author tairy
-	 */
+    /**
+     * @author tairy
+     */
     public static class PrinterBolt extends BaseBasicBolt {
         /**
          * @var serialVersionUID
