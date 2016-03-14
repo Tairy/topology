@@ -23,39 +23,39 @@ import backtype.storm.tuple.Tuple;
  */
 public class SampleTopology 
 {
-	public static class PrinterBolt extends BaseBasicBolt {
-		/**
+    public static class PrinterBolt extends BaseBasicBolt {
+        /**
 		 * serialVersionUID
 		 */
-		private static final long serialVersionUID = 3179969158010282366L;
+        private static final long serialVersionUID = 3179969158010282366L;
 
-		public void declareOutputFields(OutputFieldsDeclarer declarer) {
+        public void declareOutputFields(OutputFieldsDeclarer declarer) {
         }
 
         public void execute(Tuple tuple, BasicOutputCollector collector) {
             System.out.println(tuple.toString());
         }
     }
-	
-	public static void main(String args[]) throws Exception
-	{
-		String zookeeperHost = "docker.tairy.me:2181";
-		ZkHosts zkHosts = new ZkHosts(zookeeperHost);
-		SpoutConfig spoutConfig = new SpoutConfig(zkHosts, "sf-log", "/kafkastorm", "id");
-		spoutConfig.scheme = new SchemeAsMultiScheme(new StringScheme());
-		spoutConfig.zkServers = new ArrayList<String>() {{  
+
+    public static void main(String args[]) throws Exception
+    {
+        String zookeeperHost = "docker.tairy.me:2181";
+        ZkHosts zkHosts = new ZkHosts(zookeeperHost);
+        SpoutConfig spoutConfig = new SpoutConfig(zkHosts, "sf-log", "/kafkastorm", "id");
+        spoutConfig.scheme = new SchemeAsMultiScheme(new StringScheme());
+        spoutConfig.zkServers = new ArrayList<String>() {{  
             add("docker.tairy.me");  
         }};  
         spoutConfig.zkPort = 2181;
-		KafkaSpout kafkaSpout = new KafkaSpout(spoutConfig);
-		
-		TopologyBuilder builder = new TopologyBuilder();
-		builder.setSpout("sf-log", kafkaSpout,  1);
-		builder.setBolt("print", new PrinterBolt()).shuffleGrouping("sf-log");
-		LocalCluster cluster = new LocalCluster();
-		Config config = new Config();
-		cluster.submitTopology("kafka-test", config, builder.createTopology());
-		
-		Thread.sleep(6000);
-	}
+        KafkaSpout kafkaSpout = new KafkaSpout(spoutConfig);
+
+        TopologyBuilder builder = new TopologyBuilder();
+        builder.setSpout("sf-log", kafkaSpout,  1);
+        builder.setBolt("print", new PrinterBolt()).shuffleGrouping("sf-log");
+        LocalCluster cluster = new LocalCluster();
+        Config config = new Config();
+        cluster.submitTopology("kafka-test", config, builder.createTopology());
+
+        Thread.sleep(6000);
+    }
 }
