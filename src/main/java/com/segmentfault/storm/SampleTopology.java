@@ -25,8 +25,8 @@ public class SampleTopology
 {
     public static class PrinterBolt extends BaseBasicBolt {
         /**
-		 * serialVersionUID
-		 */
+         * serialVersionUID
+         */
         private static final long serialVersionUID = 3179969158010282366L;
 
         public void declareOutputFields(OutputFieldsDeclarer declarer) {
