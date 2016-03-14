@@ -10,39 +10,18 @@ import java.util.ArrayList;
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.spout.SchemeAsMultiScheme;
-import backtype.storm.topology.BasicOutputCollector;
-import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.TopologyBuilder;
-import backtype.storm.topology.base.BaseBasicBolt;
-import backtype.storm.tuple.Tuple;
+
+import com.segmentfault.storm.blot.PrinterBolt;
+
 
 /**
  * @author tairy
- * @date 2016-03-13
  * @version 0.0.1
  */
 public class SampleTopology 
 {
     /**
-     * @author tairy
-     */
-    public static class PrinterBolt extends BaseBasicBolt {
-        /**
-         * @var serialVersionUID
-         * @access private
-         */
-        private static final long serialVersionUID = 3179969158010282366L;
-
-        public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        }
-
-        public void execute(Tuple tuple, BasicOutputCollector collector) {
-            System.out.println(tuple.toString());
-        }
-    }
-
-    /**
-     * @access public
      * @param args
      * @throws Exception
      */
