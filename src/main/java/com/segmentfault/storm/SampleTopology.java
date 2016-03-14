@@ -23,9 +23,13 @@ import backtype.storm.tuple.Tuple;
  */
 public class SampleTopology 
 {
+	/**
+	 * @author tairy
+	 */
     public static class PrinterBolt extends BaseBasicBolt {
         /**
-         * serialVersionUID
+         * @var serialVersionUID
+         * @access private
          */
         private static final long serialVersionUID = 3179969158010282366L;
 
@@ -37,6 +41,11 @@ public class SampleTopology
         }
     }
 
+    /**
+     * @access public
+     * @param args
+     * @throws Exception
+     */
     public static void main(String args[]) throws Exception
     {
         String zookeeperHost = "docker.tairy.me:2181";
