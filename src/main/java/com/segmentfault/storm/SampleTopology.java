@@ -21,7 +21,7 @@ import backtype.storm.tuple.Tuple;
  * @date 2016-03-13
  * @version 0.0.1
  */
-public class LogFilterTopology 
+public class SampleTopology 
 {
 	public static class PrinterBolt extends BaseBasicBolt {
 		/**
